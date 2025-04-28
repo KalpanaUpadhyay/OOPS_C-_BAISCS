@@ -1,0 +1,59 @@
+Work of OOPS: To hide faltu ka complexity and make it easy for customer/developer 
+
+📒 C++ OOP Basics - Day 1 Cheat Sheet
+1. Class
+A class is a blueprint for creating objects.
+
+It defines data (variables) and functions (methods) together.
+
+class ClassName {
+    // data members
+    // member functions
+};
+
+2. Object
+An object is a real-world instance of a class.
+
+It accesses the class's variables and functions.
+
+ClassName objectName;
+
+3. Access Specifiers
+They control visibility of class members:
+
+public → accessible from anywhere.
+
+private → accessible only inside the class.
+
+protected → accessible inside class and derived classes (we'll use later).
+
+4. Member Functions
+Functions written inside a class.
+
+They perform actions like setting or displaying data.
+
+Example:
+
+void setDetails(string t, string a, double p) {
+    title = t;
+    author = a;
+    price = p;
+}
+
+5. Why Classes & Objects?
+Organize code.
+
+Protect data.
+
+Reuse code easily.
+
+Represent real-world entities naturally.
+
+✨ Mini Visual:
+         Class             --->           Object
+       (Blueprint)                     (Real thing)
+
+      Book                             Book 1: "Alchemist"
+                                        Book 2: "Wings of Fire"
+🚀 Summary Line:
+"Class is the design, object is the reality."

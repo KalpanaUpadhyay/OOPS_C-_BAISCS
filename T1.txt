@@ -1,0 +1,76 @@
+📅 Day 1: Classes and Objects in C++
+🎯 Goal:
+Understand what a class is and how to create objects.
+
+Practice access specifiers (private, public).
+
+🛠️ Task: Create a Book class
+Requirements:
+Define a class called Book.
+
+Add the following private attributes:
+
+title (string)
+
+author (string)
+
+price (float or double)
+
+Add public functions:
+
+setDetails(string t, string a, double p)
+
+displayDetails()
+
+✨ Starter Code for You: (T1.cpp)
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Define the Book class
+class Book {
+private:
+    string title;
+    string author;
+    double price;
+
+public:
+    void setDetails(string t, string a, double p) {
+        title = t;
+        author = a;
+        price = p;
+    }
+
+    void displayDetails() {
+        cout << "Book Title: " << title << endl;
+        cout << "Author: " << author << endl;
+        cout << "Price: $" << price << endl;
+    }
+};
+
+int main() {
+    Book book1;  // Create an object
+
+    // Set details
+    book1.setDetails("The Alchemist", "Paulo Coelho", 399.50);
+
+    // Display details
+    book1.displayDetails();
+
+    return 0;
+}
+📌 What You Should Try:
+Create two objects of Book.
+
+Set different details for both.
+
+Display both books' details separately.
+
+🧠 Important Learning Points:
+Class = blueprint.
+
+Object = real-world entity created from class.
+
+private = hidden data; only accessible via public functions.
+
+
