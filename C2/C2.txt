@@ -1,0 +1,91 @@
+🧱 Concepts
+✅ Constructor
+Special function that automatically runs when an object is created.
+
+Same name as the class.
+
+No return type (not even void).
+
+Can be:
+
+Default Constructor (no arguments)
+
+Parameterized Constructor (with arguments)
+
+❌ Destructor
+Called automatically when an object goes out of scope or is destroyed.
+
+Same name as class with ~ (tilde) prefix.
+
+No arguments, no return type.
+
+Used to clean up memory or resources.
+
+🛠️ Task: Update the Book class
+What to Do:
+Add a default constructor that prints "Book object created!"
+
+Add a parameterized constructor to set title, author, and price.
+
+Add a destructor that prints "Book object destroyed!"
+
+Use both constructors in main() with two objects.
+
+
+🧱 What is a Copy Constructor in C++?
+🔁 A Copy Constructor is:
+A special constructor that creates a new object as a copy of an existing object.
+
+Syntax:
+
+ClassName(const ClassName &obj)
+If you don’t define it, C++ provides a default one (shallow copy).
+
+You define your own to do a deep copy if needed.
+
+🎯 Use Case
+When you write:
+
+Book book2 = book1; // ← copy constructor is called
+✅ Add a Copy Constructor to Your Book Class
+Let’s add this to your class from earlier:
+
+// Copy constructor
+Book(const Book &b) {
+    title = b.title;
+    author = b.author;
+    price = b.price;
+    cout << "Copy constructor called!" << endl;
+}
+
+Person(const Person& other)
+is the standard, correct way to write a copy constructor in C++, because:
+
+& avoids infinite recursion (no copying when passing)
+
+const ensures safety and compatibility with const or temporary objects
+Passing by reference avoids copying the object, which is the whole point here!
+
+If you passed by value like this: Person(Person other)
+
+It would create a copy of the object to pass it into the function.
+
+But wait — that copy would require a copy constructor itself...
+
+So it becomes a recursive nightmare 🔁 leading to infinite recursion or compiler errors.
+
+✅ So: pass by reference to avoid making another copy.
+
+Adding const ensures that:
+
+You’re not accidentally modifying the original object.
+
+It also allows you to pass temporary objects or const objects to the copy constructor.
+
+🧠 Summary:
+
+Type	When It Runs
+Default Constructor	When you create object with no args
+Parameterized	When you pass arguments
+Copy Constructor	When you copy an object
+Destructor	When object is destroyed (end of scope)
