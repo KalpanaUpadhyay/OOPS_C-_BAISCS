@@ -1,0 +1,116 @@
+✅ C++ Inheritance Interview Questions & Answers
+
+🔹 Basic Level
+1. What is inheritance in C++ and why is it used?
+👉 Inheritance allows one class (derived) to reuse the attributes and methods of another class (base).
+It promotes code reusability, helps in creating hierarchies, and follows the DRY (Don’t Repeat Yourself) principle.
+
+2. What is the syntax for inheritance in C++?
+class Derived : accessSpecifier Base {
+   // body
+};
+Example:
+
+class Student : public Person {};
+
+3. What are the types of inheritance in C++?
+👉 C++ supports:
+
+Single
+
+Multiple
+
+Multilevel
+
+Hierarchical
+
+Hybrid
+
+4. Difference between public, protected, and private inheritance?
+
+
+Inheritance Type	Base class members in derived class
+Public	public → public, protected → protected
+Protected	public → protected, protected → protected
+Private	public/protected → private
+
+5. Can private members of base class be inherited?
+👉 Yes, they are inherited, but not accessible directly in the derived class. They can only be accessed through public/protected methods of the base class.
+
+🔹 Conceptual / Code-Based
+6. If a derived class overrides a base class function, which one is called?
+👉 It depends:
+
+If called through a derived object: Derived class function is called.
+
+If using a base class pointer/reference with virtual function, then derived class function is called (runtime polymorphism).
+
+7. What is the use of protected keyword?
+👉 It allows base class members to be accessible in derived classes, but not outside the class hierarchy (like private to outside world, public to children).
+
+8. Difference between inheritance and composition?
+
+Inheritance: "Is-a" relationship (e.g., Student is a Person)
+
+Composition: "Has-a" relationship (e.g., Car has an Engine)
+
+9. What is the output of this?
+
+class A {
+public:
+    void greet() { cout << "Hello from A"; }
+};
+
+class B : public A {
+public:
+    void greet() { cout << "Hello from B"; }
+};
+
+int main() {
+    B b;
+    b.greet();
+}
+👉 Output: Hello from B
+Because B overrides greet() and object is of type B.
+
+10. How do constructors and destructors work in inheritance?
+👉 Order of constructor calls:
+
+Base class constructor
+
+Derived class constructor
+👉 Order of destructor calls:
+
+Derived class destructor
+
+Base class destructor
+
+🔹 Advanced / Tricky
+11. What is object slicing in C++?
+👉 When a derived class object is assigned to a base class object, the extra members of the derived class get sliced off.
+
+12. What if two base classes have the same method?
+👉 It leads to ambiguity, known as the Diamond Problem.
+Solution: Use virtual inheritance.
+
+13. What is virtual inheritance?
+👉 It is used to avoid duplicate copies of base class when multiple inheritance leads to ambiguity.
+
+class A {};
+class B : virtual public A {};
+class C : virtual public A {};
+class D : public B, public C {}; // Only one A
+
+14. Difference: Function Overloading vs. Overriding in Inheritance?
+
+
+Feature	Overloading	Overriding
+Parameters	Different	Same
+Class	Same class	Base and derived
+Virtual required	❌	✅ (for runtime polymorphism)
+
+15. Can constructors be inherited?
+👉 No, constructors are not inherited in C++.
+But in C++11, you can use using BaseClass::BaseClass; to bring base constructors into derived class.
+
+

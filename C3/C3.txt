@@ -1,0 +1,48 @@
+📅 Day 3: Inheritance in C++
+🎯 Goal:
+Understand what inheritance is.
+
+Learn how a child (derived) class can use features of a parent (base) class.
+
+Explore single inheritance (we’ll get to multiple/multilevel later).
+
+🧱 What is Inheritance?
+It lets a class reuse the properties (data + functions) of another class.
+
+Helps in code reusability and modeling real-world hierarchy.
+
+💡 Think of it like:
+A Car class can be inherited by ElectricCar, SportsCar, etc.
+
+🔄 Syntax:
+class DerivedClass : access_specifier BaseClass {
+    // new members or overridden functions
+};
+🛠️ Task: Create a base class Person and a derived class Student
+👩‍🎓 Base Class: Person
+name (string)
+
+age (int)
+
+Function: displayPerson()
+
+🧑‍🎓 Derived Class: Student (inherits Person)
+university (string)
+
+Function: displayStudent()
+
+
+✅ Today’s Challenge
+ Run and understand the output.
+
+ Try creating another derived class Teacher with subject info.
+
+ Try using protected instead of private in base to see access rules.
+
+🧠 Quick Notes:
+
+Access Specifier	Inherited As	Accessible in Child?
+public	public	✅
+protected	protected	✅
+private	not inherited	❌
+
