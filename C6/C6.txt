@@ -1,0 +1,57 @@
+🔐 Encapsulation
+Definition: Encapsulation is the bundling of data and methods that operate on that data into a single unit (i.e., a class), while restricting access to some components from outside the class.
+
+It helps:
+
+Hide implementation details.
+
+Protect data from unintended modification.
+
+Improve maintainability and flexibility.
+
+🧱 Access Specifiers in C++
+Access Specifier	Description
+public	Accessible from anywhere.
+private	Accessible only within the class.
+protected	Accessible within the class and derived classes.
+
+
+
+
+#include <iostream>
+using namespace std;
+
+class Employee {
+private:
+    int salary;  // private: not accessible outside directly
+
+public:
+    void setSalary(int s) {
+        if (s > 0) salary = s;
+        else cout << "Invalid salary!" << endl;
+    }
+
+    int getSalary() {
+        return salary;
+    }
+};
+
+int main() {
+    Employee emp;
+    emp.setSalary(50000);
+    cout << "Employee Salary: " << emp.getSalary() << endl;
+
+    // emp.salary = 100000; // ❌ Not allowed: salary is private
+}
+
+
+
+
+🧠 Interview Insight:
+Q: Why use private members with getters/setters instead of making variables public?
+✅ A: Because it allows validation, future-proofing, and control over how variables are accessed or modified.
+
+🔁 Summary:
+Feature	Purpose
+Encapsulation	Data hiding + data security
+Access Specifiers	Control access to class members
