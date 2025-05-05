@@ -1,0 +1,76 @@
+⚠️ Exception Handling in C++
+Exception handling allows your program to respond gracefully when something unexpected goes wrong, like a divide-by-zero or a failed memory allocation.
+
+🚨 What is an Exception?
+An exception is a problem that occurs during the execution of a program. C++ uses three keywords to handle exceptions:
+
+try — block of code to monitor for errors
+
+catch — block of code that handles the error
+
+throw — used to signal (raise) an exception
+
+🧪 Basic Syntax
+#include <iostream>
+using namespace std;
+
+int divide(int a, int b) {
+    if (b == 0)
+        throw "Division by zero exception!";
+    return a / b;
+}
+
+int main() {
+    try {
+        cout << divide(10, 0) << endl;
+    } catch (const char* msg) {
+        cerr << "Caught exception: " << msg << endl;
+    }
+    return 0;
+}
+Output:
+
+Caught exception: Division by zero exception!
+
+🔄 Multiple Catch Blocks
+cpp
+Copy
+Edit
+try {
+    // some code
+}
+catch (int e) {
+    cout << "Caught int: " << e << endl;
+}
+catch (const char* msg) {
+    cout << "Caught string: " << msg << endl;
+}
+🧰 Exception Handling with Objects
+class MyException {
+public:
+    const char* what() {
+        return "Custom exception occurred!";
+    }
+};
+
+try {
+    throw MyException();
+} catch (MyException e) {
+    cout << e.what() << endl;
+}
+
+✅ Best Practices
+Always throw meaningful exceptions.
+
+Use const references in catch blocks: catch(const MyException& e)
+
+Clean up resources if exceptions are thrown (or use smart pointers).
+
+💬 Interview Questions
+Question	Answer
+Can we catch all exceptions?	Yes, use catch(...)
+Can we rethrow an exception?	Yes, use throw; inside a catch block
+What happens if an exception is thrown but not caught?	Program crashes (terminate called)
+Can destructors throw exceptions?	No, they should not. It's bad practice.
+
+
