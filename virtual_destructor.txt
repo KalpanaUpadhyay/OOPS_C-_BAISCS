@@ -1,0 +1,57 @@
+🧠 Why is a virtual destructor important in a polymorphic base class?
+If a base class has non-virtual destructor, and you delete a derived object through a base class pointer, only the base class destructor will be called — the derived class destructor will not run. This can lead to resource leaks.
+
+🔥 Example: Without Virtual Destructor (Buggy)
+#include <iostream>
+using namespace std;
+
+class Base {
+public:
+    ~Base() {
+        cout << "Base destructor called\n";
+    }
+};
+
+class Derived : public Base {
+public:
+    ~Derived() {
+        cout << "Derived destructor called\n";
+    }
+};
+
+int main() {
+    Base* b = new Derived();
+    delete b; // Only Base destructor is called!
+    return 0;
+}
+❌ Output:
+Base destructor called
+➡️ Derived destructor was not called — this can leak memory or skip cleanup logic in Derived.
+
+✅ Fixed: With Virtual Destructor
+#include <iostream>
+using namespace std;
+
+class Base {
+public:
+    virtual ~Base() {
+        cout << "Base destructor called\n";
+    }
+};
+
+class Derived : public Base {
+public:
+    ~Derived() {
+        cout << "Derived destructor called\n";
+    }
+};
+
+int main() {
+    Base* b = new Derived();
+    delete b; // Both destructors are called
+    return 0;
+}
+✅ Output:
+Derived destructor called  
+Base destructor called
+✅ Now it's safe — memory/resource cleanup in Derived is performed properly.

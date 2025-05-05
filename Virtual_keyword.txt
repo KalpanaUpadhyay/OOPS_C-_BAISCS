@@ -1,0 +1,48 @@
+✅ Benefits of Virtual Functions and Runtime Polymorphism in C++
+🧠 What is Runtime Polymorphism?
+It's the ability of the program to decide at runtime which function to call when a base class pointer or reference is used to point to a derived class object.
+
+This is made possible using virtual functions.
+
+🔍 Why Use Virtual Functions & Runtime Polymorphism?
+1. Dynamic Behavior
+Allows behavior to be decided at runtime, not compile-time.
+
+You can write generic code in the base class and override specific behavior in derived classes.
+
+class Animal {
+public:
+    virtual void sound() {
+        cout << "Some animal sound\n";
+    }
+};
+
+class Dog : public Animal {
+public:
+    void sound() override {
+        cout << "Bark\n";
+    }
+};
+
+Animal* a = new Dog();
+a->sound();  // Output: Bark (not "Some animal sound")
+2. Flexibility & Extensibility
+Code is easier to extend in future — you just add a new derived class without changing existing logic.
+
+Makes implementation of plugin systems or frameworks possible.
+
+3. Code Reusability
+Base class functions and interface can be reused while customizing behavior via overrides in derived classes.
+
+4. Supports Abstraction
+You can program to interfaces (abstract classes with pure virtual functions).
+
+This enables decoupling between interface and implementation.
+
+5. Essential for Polymorphic Collections
+Use base class pointers/references to store objects of different derived classes and call their respective methods dynamically.
+
+vector<Animal*> zoo = { new Dog(), new Cat() };
+for (Animal* a : zoo) a->sound(); // Each animal will use its own `sound` function
+⚠️ Without virtual, you get compile-time binding — the base class version will always be called, even if you're pointing to a derived object.
+

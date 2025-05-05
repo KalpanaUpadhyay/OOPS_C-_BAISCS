@@ -1,0 +1,67 @@
+🟢 Basics & Class Concepts
+Q: What is the difference between a class and an object?
+A: A class is a blueprint, and an object is an instance of that class.
+
+Q: What is a constructor?
+A: A special function that initializes an object. It has the same name as the class and no return type.
+
+Q: Can a constructor be overloaded?
+A: Yes. You can have multiple constructors with different parameter lists.
+
+🔵 Inheritance & Polymorphism
+Q: What is inheritance in C++?
+A: A mechanism by which a class can inherit properties and behaviors from another class using the : syntax.
+
+Q: Types of inheritance in C++?
+A: Single, Multiple, Multilevel, Hierarchical, and Hybrid.
+
+Q: What is the difference between function overloading and function overriding?
+A:
+
+Overloading: same function name, different parameters (compile-time).
+
+Overriding: same function signature in base and derived class (run-time).
+
+Q: What is virtual function?
+A: A function that is declared with virtual keyword in base class and meant to be overridden in derived class. Enables runtime polymorphism.
+
+Q: What is a pure virtual function?
+A: A virtual function with no definition = 0. It makes a class abstract.
+
+🟡 Encapsulation & Access Specifiers
+Q: What is encapsulation?
+A: Wrapping of data and functions into a single unit and restricting access using access specifiers.
+
+Q: Difference between private, public, and protected access?
+A:
+
+public: Accessible anywhere
+
+private: Only within the class
+
+protected: Class + derived classes
+
+🔴 Constructors & Destructors
+Q: What is a copy constructor?
+A: A constructor that creates a new object as a copy of an existing one: ClassName(const ClassName &obj);
+
+Q: Can destructors be overloaded?
+A: No, only one destructor is allowed per class.
+
+Q: Why should destructors be virtual in base classes?
+A: To ensure the derived class destructor is called when deleting an object via a base class pointer.
+
+🟣 Exception Handling
+Q: What is the purpose of try, catch, and throw in C++?
+A: They are used for handling exceptions during program execution.
+
+Q: Can we catch all types of exceptions?
+A: Yes, using catch(...) we can catch any exception.
+
+Q: What happens if an exception is not caught?
+A: std::terminate is called, and the program crashes.
+
+Q: Can constructors throw exceptions?
+A: Yes. If a constructor fails, it can throw an exception to signal the error.
+
+
