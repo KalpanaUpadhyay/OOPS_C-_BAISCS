@@ -46,3 +46,5 @@ vector<Animal*> zoo = { new Dog(), new Cat() };
 for (Animal* a : zoo) a->sound(); // Each animal will use its own `sound` function
 ⚠️ Without virtual, you get compile-time binding — the base class version will always be called, even if you're pointing to a derived object.
 
+
+Also, destructors are called in reverse order of construction: Derived first, then Base.
