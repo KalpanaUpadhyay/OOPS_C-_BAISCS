@@ -1,0 +1,54 @@
+🔍 What is a vtable?
+A vtable is an internal mechanism used by the C++ compiler to support dynamic dispatch of virtual functions. Think of it as a lookup table of function pointers maintained per class.
+
+📌 How it works (Step by Step):
+When a class has at least one virtual function, the compiler creates a hidden structure called the vtable for that class.
+
+The vtable contains addresses (function pointers) to the virtual functions of that class.
+
+Each object of that class contains a hidden pointer to the vtable (called vptr).
+
+When you call a virtual function using a base class pointer or reference, the vptr is used to look up the correct function from the vtable at runtime.
+
+🧠 Example:
+#include <iostream>
+using namespace std;
+
+class Base {
+public:
+    virtual void show() {
+        cout << "Base show\n";
+    }
+};
+
+class Derived : public Base {
+public:
+    void show() override {
+        cout << "Derived show\n";
+    }
+};
+
+int main() {
+    Base* b = new Derived();
+    b->show();  // Calls Derived::show() using vtable
+    delete b;
+    return 0;
+}
+
+🧠 What happens behind the scenes:
+The compiler creates a vtable for Base and Derived.
+
+Base's vtable: points to Base::show
+
+Derived's vtable: points to Derived::show
+
+When b->show() is called, it uses the vptr in the object to look up the function in the vtable — so it correctly calls Derived::show().
+
+✅ Why vtable is useful:
+Enables runtime polymorphism
+
+Decouples the caller from the actual implementation
+
+Essential for building extensible systems using interfaces/abstract base classes
+
+
