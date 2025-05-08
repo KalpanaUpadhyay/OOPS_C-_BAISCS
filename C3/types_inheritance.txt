@@ -1,0 +1,43 @@
+In C++, inheritance allows one class to acquire properties (data members and member functions) of another. Here are the main types of inheritance:
+
+🔹 1. Single Inheritance
+One derived class inherits from one base class.
+
+class A {
+public:
+    void show() {}
+};
+
+class B : public A {
+    // Inherits show()
+};
+
+🔹 2. Multiple Inheritance
+A class inherits from more than one base class.
+
+class A {};
+class B {};
+
+class C : public A, public B {};
+
+🔹 3. Multilevel Inheritance
+A class is derived from a class that is already derived from another class.
+
+class A {};
+class B : public A {};
+class C : public B {};
+
+🔹 4. Hierarchical Inheritance
+Multiple classes inherit from a single base class.
+
+class A {};
+class B : public A {};
+class C : public A {};
+
+🔹 5. Hybrid Inheritance
+A combination of more than one type of inheritance (e.g., multiple + hierarchical), which may lead to the diamond problem.
+
+class A {};
+class B : public A {};
+class C : public A {};
+class D : public B, public C {}; // Diamond problem risk

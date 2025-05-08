@@ -1,0 +1,41 @@
+The diamond problem in C++ is a classic issue that arises in multiple inheritance when two classes inherit from the same base class, and a fourth class inherits from both of them. It looks like a diamond shape, hence the name.
+
+🔷 Example of the Diamond Problem:
+class A {
+public:
+    void greet() { cout << "Hello from A\n"; }
+};
+
+class B : public A { };
+
+class C : public A { };
+
+class D : public B, public C { };
+Now if you do:
+
+D d;
+d.greet();  // ❌ Error: 'greet' is ambiguous
+The compiler gets confused:
+Should it use A::greet() from B or from C?
+This is ambiguity — the diamond problem.
+
+💡 Solution: Use virtual inheritance
+class A {
+public:
+    void greet() { cout << "Hello from A\n"; }
+};
+
+class B : virtual public A { };
+
+class C : virtual public A { };
+
+class D : public B, public C { };
+Now there's only one shared instance of A in D, so no ambiguity.
+
+D d;
+d.greet();  // ✅ Works fine. Calls A::greet()
+
+🔑 Summary
+Without virtual			With virtual
+Multiple copies of base A	One shared copy of base A
+Ambiguity in method access	No ambiguity, clean inheritance

@@ -19,14 +19,14 @@ class DerivedClass : access_specifier BaseClass {
     // new members or overridden functions
 };
 🛠️ Task: Create a base class Person and a derived class Student
-👩‍🎓 Base Class: Person
+🎓 Base Class: Person
 name (string)
 
 age (int)
 
 Function: displayPerson()
 
-🧑‍🎓 Derived Class: Student (inherits Person)
+🎓 Derived Class: Student (inherits Person)
 university (string)
 
 Function: displayStudent()
