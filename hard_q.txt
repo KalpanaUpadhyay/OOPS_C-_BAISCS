@@ -1,0 +1,86 @@
+Here are some hard-level C++ OOPs interview questions along with concise and insightful answers. These are commonly asked in top product companies and test deep understanding:
+
+1. What is object slicing in C++?
+Answer:
+Object slicing occurs when a derived class object is assigned to a base class object by value, slicing off the derived part.
+
+class Base { public: int x; };
+class Derived : public Base { public: int y; };
+
+Base b = Derived(); // y is sliced off
+Use pointers or references to avoid slicing.
+
+2. Can a constructor be virtual? Why or why not?
+Answer:
+No, constructors cannot be virtual because virtual mechanism depends on vtable, and vtable is set up inside the constructor. Hence, the vtable pointer doesn’t exist when constructor begins.
+
+3. What is the difference between virtual inheritance and multiple inheritance?
+Answer:
+
+Multiple Inheritance: A class inherits from more than one base class. May cause Diamond Problem.
+
+Virtual Inheritance: Ensures only one instance of the common base class is shared to resolve the diamond problem.
+
+class A {};
+class B : virtual public A {};
+class C : virtual public A {};
+class D : public B, public C {}; // only one A
+4. Explain Rule of 3 / Rule of 5 in C++
+Answer:
+If a class manages resources (e.g., memory, file handles), you should define:
+
+Destructor
+
+Copy Constructor
+
+Copy Assignment Operator
+
+With C++11:
+
+Move Constructor
+
+Move Assignment Operator
+
+This avoids resource leaks and undefined behavior.
+
+5. What is the difference between override and final keywords in C++11?
+Answer:
+
+override: Ensures the method is overriding a base class virtual method. Compiler error if not.
+
+final: Prevents a method from being overridden or class from being inherited.
+
+class Base {
+    virtual void func() final;
+};
+
+class Derived : public Base {
+    void func() override; // Error, func is final in Base
+};
+6. How does C++ implement polymorphism under the hood?
+Answer:
+Via vtable (virtual table) and vptr (virtual pointer). Each polymorphic object has a hidden vptr pointing to its class’s vtable, which stores addresses of virtual functions.
+
+7. What happens if a base class has a non-virtual destructor and a derived class is deleted through a base pointer?
+Answer:
+Undefined behavior and potential memory leak. Always make the base class destructor virtual if you intend to delete derived objects via base pointers.
+
+8. What is CRTP (Curiously Recurring Template Pattern)?
+Answer:
+A technique where a class inherits from a template instantiation of itself.
+
+template <typename T>
+class Base {
+public:
+    void interface() {
+        static_cast<T*>(this)->implementation();
+    }
+};
+
+class Derived : public Base<Derived> {
+public:
+    void implementation() { std::cout << "Derived\n"; }
+};
+Used for static polymorphism.
+
+
