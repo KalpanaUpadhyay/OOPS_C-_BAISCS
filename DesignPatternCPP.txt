@@ -1,0 +1,165 @@
+Design patterns in C++ are reusable solutions to common problems in software design. They provide a template for writing code that is easier to maintain, scale, and understand. Below are the major categories and examples of design patterns in C++, along with short explanations and code snippets.
+
+🔧 1. Creational Patterns
+These patterns deal with object creation mechanisms.
+
+✅ a. Singleton
+Ensures a class has only one instance and provides a global access point to it.
+
+class Singleton {
+private:
+    static Singleton* instance;
+    Singleton() {}  // private constructor
+
+public:
+    static Singleton* getInstance() {
+        if (!instance)
+            instance = new Singleton();
+        return instance;
+    }
+};
+
+Singleton* Singleton::instance = nullptr;
+✅ b. Factory Method
+Defines an interface for creating an object, but allows subclasses to alter the type of objects that will be created.
+
+class Product {
+public:
+    virtual void use() = 0;
+};
+
+class ConcreteProduct : public Product {
+public:
+    void use() override { std::cout << "Using ConcreteProduct\n"; }
+};
+
+class Creator {
+public:
+    virtual Product* createProduct() = 0;
+};
+
+class ConcreteCreator : public Creator {
+public:
+    Product* createProduct() override {
+        return new ConcreteProduct();
+    }
+};
+🧱 2. Structural Patterns
+These focus on how classes and objects are composed.
+
+✅ a. Adapter
+Converts one interface to another expected by the client.
+
+class OldInterface {
+public:
+    void oldRequest() { std::cout << "Old Interface\n"; }
+};
+
+class NewInterface {
+public:
+    virtual void newRequest() = 0;
+};
+
+class Adapter : public NewInterface {
+    OldInterface* old;
+public:
+    Adapter(OldInterface* o) : old(o) {}
+    void newRequest() override { old->oldRequest(); }
+};
+✅ b. Decorator
+Adds behavior to objects dynamically.
+
+class Component {
+public:
+    virtual void operation() = 0;
+};
+
+class ConcreteComponent : public Component {
+public:
+    void operation() override { std::cout << "Base operation\n"; }
+};
+
+class Decorator : public Component {
+protected:
+    Component* comp;
+public:
+    Decorator(Component* c) : comp(c) {}
+    void operation() override { comp->operation(); }
+};
+
+class ConcreteDecorator : public Decorator {
+public:
+    ConcreteDecorator(Component* c) : Decorator(c) {}
+    void operation() override {
+        Decorator::operation();
+        std::cout << "Added behavior\n";
+    }
+};
+🔁 3. Behavioral Patterns
+These patterns focus on communication between objects.
+
+✅ a. Observer
+Allows multiple objects to listen to and react to events or changes in another object.
+
+#include <vector>
+
+class Observer {
+public:
+    virtual void update(int value) = 0;
+};
+
+class Subject {
+    std::vector<Observer*> observers;
+    int state;
+public:
+    void attach(Observer* o) { observers.push_back(o); }
+    void setState(int s) {
+        state = s;
+        for (auto o : observers)
+            o->update(state);
+    }
+};
+
+class ConcreteObserver : public Observer {
+    int observerState;
+public:
+    void update(int value) override {
+        observerState = value;
+        std::cout << "Observer updated: " << observerState << "\n";
+    }
+};
+✅ b. Strategy
+Defines a family of algorithms and makes them interchangeable.
+
+class Strategy {
+public:
+    virtual void execute() = 0;
+};
+
+class ConcreteStrategyA : public Strategy {
+public:
+    void execute() override { std::cout << "Strategy A\n"; }
+};
+
+class ConcreteStrategyB : public Strategy {
+public:
+    void execute() override { std::cout << "Strategy B\n"; }
+};
+
+class Context {
+    Strategy* strategy;
+public:
+    Context(Strategy* s) : strategy(s) {}
+    void setStrategy(Strategy* s) { strategy = s; }
+    void executeStrategy() { strategy->execute(); }
+};
+📚 Summary Table
+Category	Pattern	Purpose
+Creational	Singleton	One instance only
+Creational	Factory Method	Create objects with interface
+Structural	Adapter	Match incompatible interfaces
+Structural	Decorator	Add responsibilities dynamically
+Behavioral	Observer	Subscribe/notify mechanism
+Behavioral	Strategy	Encapsulate interchangeable logic
+
+
