@@ -1,0 +1,89 @@
+🔹 Basic Questions
+1. How is memory allocated in C++?
+C++ uses two types of memory:
+
+Stack: Automatically managed memory for local variables. Fast but limited in size.
+
+Heap: Manually managed memory using new/delete. Larger and persistent but requires careful handling.
+
+2. What is the difference between new and malloc()?
+Feature	new	malloc()
+Language	C++	C
+Constructor	Calls constructor	Doesn’t call
+Return Type	Actual pointer type	void*
+Failure	Throws bad_alloc	Returns NULL
+Deallocation	delete	free()
+
+3. What happens if you forget to call delete?
+You get a memory leak: the allocated memory is not returned to the system, potentially causing your program to run out of memory over time.
+
+4. What is a memory leak?
+Memory that is allocated but never deallocated, meaning it remains reserved even if it's no longer used.
+
+5. What is a dangling pointer?
+A pointer that refers to memory that has been freed or deleted. Accessing it leads to undefined behavior.
+
+int* ptr = new int(5);
+delete ptr;
+// ptr is now dangling
+🔸 Intermediate Questions
+6. What are smart pointers?
+Smart pointers manage memory automatically to avoid leaks:
+
+std::unique_ptr: sole ownership
+
+std::shared_ptr: reference counting
+
+std::weak_ptr: non-owning observer of shared_ptr
+
+7. What is RAII (Resource Acquisition Is Initialization)?
+A design pattern where resources (like memory, file handles) are acquired in object constructors and released in destructors. Helps prevent memory/resource leaks.
+
+8. What is the difference between shallow copy and deep copy?
+Shallow copy: copies the pointer, not the data. Multiple objects share the same memory.
+
+Deep copy: allocates new memory and copies the actual data. Safer.
+
+9. When is the destructor called in C++?
+When an object goes out of scope (stack)
+
+When delete is used (heap)
+
+When a smart pointer's reference count becomes zero (shared_ptr)
+
+10. How do you avoid memory leaks in C++?
+Use smart pointers
+
+Follow RAII
+
+Avoid raw new/delete when possible
+
+Use tools like Valgrind, ASan
+
+🔺 Advanced / System-Level Questions
+11. What happens under the hood when new is called?
+Allocates memory from the heap using operator new (can be overridden)
+
+Calls the object's constructor
+
+12. Can you overload new and delete?
+Yes. You can define custom behavior for memory allocation by overloading global or class-specific operator new and operator delete.
+
+void* operator new(size_t size);
+void operator delete(void* ptr);
+13. Explain memory fragmentation.
+External fragmentation: Enough total free memory exists, but not in contiguous blocks.
+
+Internal fragmentation: Memory allocated is larger than needed, wasting space.
+
+14. How does delete[] differ from delete?
+delete[] deallocates arrays and calls destructors for each element.
+
+Using delete on an array causes undefined behavior.
+
+15. What tools can help detect memory issues in C++?
+Valgrind
+
+AddressSanitizer (ASan)
+
+Static analyzers like clang-tidy or cppcheck
